@@ -29,6 +29,14 @@ for side in range(4):
     borderBuilder.lt(90)
 borderBuilder.hideturtle()
 
+# Tank [Player]
+player = turtle.Turtle()
+player.penup()
+player.speed(0)
+player.setposition(0, -230)
+player.shape("triangle")
+player.setheading(90)
+player.color("green")
 
 while isRunning:
     gameWindow.update()
