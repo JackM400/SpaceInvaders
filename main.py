@@ -12,7 +12,7 @@ isRunning = True
 # game screen
 gameWindow = turtle.Screen()
 gameWindow.title("Space Invaders - JackM400")
-gameWindow.setup(width=900, height=700)
+# gameWindow.setup(width=600, height=600)
 gameWindow.bgcolor("black")
 
 # screen attributes
@@ -20,6 +20,14 @@ gameWindow.bgcolor("black")
 borderBuilder = turtle.Turtle()
 borderBuilder.speed(0)  # 0 == fastest speed
 borderBuilder.color("white")
+borderBuilder.pensize(3)
+borderBuilder.penup()
+borderBuilder.setposition(-300, -300)
+borderBuilder.pendown()
+for side in range(4):
+    borderBuilder.fd(600)
+    borderBuilder.lt(90)
+borderBuilder.hideturtle()
 
 
 while isRunning:
