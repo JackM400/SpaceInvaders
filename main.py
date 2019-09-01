@@ -49,6 +49,8 @@ playerSpeed = 20
 def moveRight():
     position = player.xcor()
     position += playerSpeed
+    if position < 250:
+        position = 250
     player.setx(position)
 
 
@@ -56,6 +58,8 @@ def moveRight():
 def moveLeft():
     position = player.xcor()
     position -= playerSpeed
+    if position < -250:
+        position = -250
     player.setx(position)
 
 
