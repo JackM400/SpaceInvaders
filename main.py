@@ -41,14 +41,19 @@ player.color("green")
 
 # -Movement
 playerSpeed = 20
-
+#@start position is 0, if move L(-) or R(+) selected ,  player speed acts on position
 
 # -Right
 def moveRight():
-
+    position = player.xcor()
+    position += playerSpeed
+    player.setx(position)
 
 # -Left
 def moveLeft():
+    position = player.xcor()
+    position -= playerSpeed
+    player.setx(position)
 
 
 while isRunning:
