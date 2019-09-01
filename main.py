@@ -30,6 +30,7 @@ for side in range(4):
 borderBuilder.hideturtle()
 
 # Tank [Player]
+# Player attributes
 player = turtle.Turtle()
 player.penup()
 player.speed(0)
@@ -37,6 +38,18 @@ player.setposition(0, -230)
 player.shape("triangle")
 player.setheading(90)
 player.color("green")
+
+# -Movement
+playerSpeed = 20
+
+
+# -Right
+def moveRight():
+
+
+# -Left
+def moveLeft():
+
 
 while isRunning:
     gameWindow.update()
