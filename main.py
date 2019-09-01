@@ -41,7 +41,9 @@ player.color("green")
 
 # -Movement
 playerSpeed = 20
-#@start position is 0, if move L(-) or R(+) selected ,  player speed acts on position
+
+
+# @start position is 0, if move L(-) or R(+) selected ,  player speed acts on position
 
 # -Right
 def moveRight():
@@ -49,12 +51,18 @@ def moveRight():
     position += playerSpeed
     player.setx(position)
 
+
 # -Left
 def moveLeft():
     position = player.xcor()
     position -= playerSpeed
     player.setx(position)
 
+
+# keyboard Input
+gameWindow.listen()
+gameWindow.onkeypress(moveRight(), "d")
+gameWindow.onkeypress(moveLeft(), "a")
 
 while isRunning:
     gameWindow.update()
