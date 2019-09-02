@@ -43,6 +43,9 @@ player.color("green")
 playerSpeed = 20
 
 
+# projectiles
+projectile = turtle.Turtle()
+
 # @start position is 0, if move L(-) or R(+) selected ,  player speed acts on position
 
 # -Right
