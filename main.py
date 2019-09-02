@@ -42,9 +42,18 @@ player.color("green")
 # -Movement
 playerSpeed = 20
 
-
 # projectiles
 projectile = turtle.Turtle()
+projectile.color("white")
+projectile.shape("triangle")
+projectile.penup()
+projectile.speed()
+projectile.setheading(90)
+projectile.shapesize(.9, .90)
+projectile.hideturtle()
+
+projectileSpeed = 25
+
 
 # @start position is 0, if move L(-) or R(+) selected ,  player speed acts on position
 
