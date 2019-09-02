@@ -53,6 +53,19 @@ projectile.shapesize(.9, .90)
 projectile.hideturtle()
 
 projectileSpeed = 25
+canFire = True
+firing = False
+
+
+def fire():
+    # set porjectitle to nose of player
+    if canFire():
+        firing = True
+        # start location , @player
+        positionx = player.xcor()
+        positiony = player.ycor()
+        projectile.setposition(positionx, positiony)
+        positiony.showtutle()
 
 
 # @start position is 0, if move L(-) or R(+) selected ,  player speed acts on position
