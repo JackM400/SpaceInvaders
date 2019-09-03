@@ -141,9 +141,9 @@ while isRunning:
     killCheck()
     # keyboard Input
     game_window.listen()
-    game_window.onkey(move_right(), "d")
-    game_window.onkey(move_left(), "a")
-    game_window.onkey(fire(), "Space")
+    game_window.onkeypress(move_right(), "d")
+    game_window.onkeypress(move_left(), "a")
+    game_window.onkeypress(fire(), "Space")
 
     # isRunning = False
 
