@@ -106,7 +106,10 @@ gameWindow.onkeypress(moveRight(), "d")
 gameWindow.onkeypress(moveLeft(), "a")
 
 while isRunning:
-# boot
-# populate enemies
-# set enemy speed
-# move enemy
+    # boot
+    # populate enemies
+    # set enemy speed
+    # move enemy
+    x = enemy.xcor()
+    x += enemySpeed
+    enemy.setx(x)
