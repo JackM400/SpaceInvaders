@@ -112,10 +112,11 @@ while isRunning:
     enemy.setx(x)
 
     # enemy progression , R -> D -> L -> D -> R ....
-    # Left Right movement
-    if enemy.xcor() > 275:
-        enemySpeed *= -1
-    if enemy.xcor() < -275:
+    # Left ,Right + Down movement
+    if enemy.xcor() > 270 or enemy.xcor() < -270:
+        y = enemy.ycor()
+        y -= 20
+        enemy.sety(y)
         enemySpeed *= -1
 
     # keyboard Input
