@@ -16,6 +16,9 @@ gameWindow.title("Space Invaders - JackM400")
 # gameWindow.setup(width=600, height=600)
 gameWindow.bgcolor("black")
 
+# game attributes
+GameScore = 0
+
 # screen attributes
 # -border
 borderBuilder = turtle.Turtle()
@@ -68,6 +71,12 @@ enemy.speed()
 enemy.setheading(270)
 enemy.setposition(-200, 250)
 enemy.hideturtle()
+
+
+def killCheck():
+    global GameScore
+    killCount = 0
+    GameScore = 0
 
 
 def fire():
@@ -129,6 +138,7 @@ while isRunning:
         print("Game Over")
         isRunning = False
 
+    killCheck()
     # keyboard Input
     gameWindow.listen()
     gameWindow.onkey(moveRight(), "d")
