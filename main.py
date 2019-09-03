@@ -11,28 +11,28 @@ from turtle import *
 isRunning = True
 
 # game screen
-gameWindow = turtle.Screen()
-gameWindow.title("Space Invaders - JackM400")
-# gameWindow.setup(width=600, height=600)
-gameWindow.bgcolor("black")
+game_window = turtle.Screen()
+game_window.title("Space Invaders - JackM400")
+# game_window.setup(width=600, height=600)
+game_window.bgcolor("black")
 
-# game attributes
+# game attributes 
 GameScore = 0
 
 # screen attributes
 # -border
-borderBuilder = turtle.Turtle()
-borderBuilder.speed(0)  # 0 == fastest speed
-borderBuilder.color("white")
-borderBuilder.pensize(3)
-borderBuilder.penup()
-borderBuilder.setposition(-300, -300)
-borderBuilder.pendown()
+border_builder = turtle.Turtle()
+border_builder.speed(0)  # 0 == fastest speed
+border_builder.color("white")
+border_builder.pensize(3)
+border_builder.penup()
+border_builder.setposition(-300, -300)
+border_builder.pendown()
 
 for side in range(4):
-    borderBuilder.fd(600)
-    borderBuilder.lt(90)
-borderBuilder.hideturtle()
+    border_builder.fd(600)
+    border_builder.lt(90)
+border_builder.hideturtle()
 
 # Tank [Player]
 # Player attributes
@@ -45,9 +45,9 @@ player.setheading(90)
 player.color("green")
 
 # -Movement
-playerSpeed = 20
-enemySpeed = 5
-projectileSpeed = 25
+player_speed = 20
+enemy_speed = 5
+projectile_Speed = 25
 
 # projectiles
 projectile = turtle.Turtle()
@@ -74,10 +74,10 @@ enemy.hideturtle()
 
 
 def killCheck():
-    global GameScore
-    killCount = 0
+    global GameScore 
+    kill_count = 0
     GameScore = 0
-
+    
 
 def fire():
     # set porjectitle to nose of player
@@ -98,18 +98,18 @@ def fire():
 # @start position is 0, if move L(-) or R(+) selected ,  player speed acts on position
 
 # -Right
-def moveRight():
+def move_right():
     position = player.xcor()
-    position += playerSpeed
+    position += player_speed
     if position < 250:
         position = 250
     player.setx(position)
 
 
 # -Left
-def moveLeft():
+def move_left():
     position = player.xcor()
-    position -= playerSpeed
+    position -= player_speed
     if position < -250:
         position = -250
     player.setx(position)
@@ -122,7 +122,7 @@ while isRunning:
     # move enemy
     enemy.showturtle()
     x = enemy.xcor()
-    x += enemySpeed
+    x += enemy_speed
     enemy.setx(x)
 
     # enemy progression , R -> D -> L -> D -> R ....
@@ -131,7 +131,7 @@ while isRunning:
         y = enemy.ycor()
         y -= 20
         enemy.sety(y)
-        enemySpeed *= -1
+        enemy_speed *= -1
 
     # lose check
     if enemy.ycor() < -250:
@@ -140,11 +140,11 @@ while isRunning:
 
     killCheck()
     # keyboard Input
-    gameWindow.listen()
-    gameWindow.onkey(moveRight(), "d")
-    gameWindow.onkey(moveLeft(), "a")
-    gameWindow.onkey(fire(), "Space")
+    game_window.listen()
+    game_window.onkey(move_right(), "d")
+    game_window.onkey(move_left(), "a")
+    game_window.onkey(fire(), "Space")
 
     # isRunning = False
 
-gameWindow.mainloop()
+game_window.mainloop()
