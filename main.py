@@ -6,6 +6,7 @@ import os
 import turtle
 import winsound
 import time
+from turtle import *
 
 isRunning = True
 
@@ -34,7 +35,7 @@ borderBuilder.hideturtle()
 player = turtle.Turtle()
 player.penup()
 player.speed(0)
-player.setposition(0, -230)
+player.setposition(-20, -230)
 player.shape("triangle")
 player.setheading(90)
 player.color("green")
@@ -100,16 +101,28 @@ def moveLeft():
     player.setx(position)
 
 
-# keyboard Input
-gameWindow.listen()
-gameWindow.onkeypress(moveRight(), "d")
-gameWindow.onkeypress(moveLeft(), "a")
-
 while isRunning:
     # boot
     # populate enemies
     # set enemy speed
     # move enemy
+    enemy.showturtle()
     x = enemy.xcor()
     x += enemySpeed
     enemy.setx(x)
+
+    # enemy progression , R -> D -> L -> D -> R ....
+    # Left Right movement
+    if enemy.xcor() > 275:
+        enemySpeed *= -1
+    if enemy.xcor() < -275:
+        enemySpeed *= -1
+
+    # keyboard Input
+    gameWindow.listen()
+    gameWindow.onkeypress(moveRight(), "d")
+    gameWindow.onkeypress(moveLeft(), "a")
+
+    # isRunning = False
+
+gameWindow.mainloop()
