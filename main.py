@@ -56,6 +56,18 @@ projectileSpeed = 25
 canFire = True
 firing = False
 
+# Enemy
+enemy = turtle.Turtle()
+enemy.color("red")
+enemy.shape("triangle")
+enemy.penup()
+enemy.speed()
+enemy.setheading(270)
+enemy.setposition(-200, 250)
+enemy.hideturtle()
+
+enemySpeed = 5
+
 
 def fire():
     # set porjectitle to nose of player
@@ -94,4 +106,7 @@ gameWindow.onkeypress(moveRight(), "d")
 gameWindow.onkeypress(moveLeft(), "a")
 
 while isRunning:
-    gameWindow.update()
+# boot
+# populate enemies
+# set enemy speed
+# move enemy
