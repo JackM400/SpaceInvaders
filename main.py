@@ -25,6 +25,7 @@ borderBuilder.pensize(3)
 borderBuilder.penup()
 borderBuilder.setposition(-300, -300)
 borderBuilder.pendown()
+
 for side in range(4):
     borderBuilder.fd(600)
     borderBuilder.lt(90)
@@ -42,6 +43,8 @@ player.color("green")
 
 # -Movement
 playerSpeed = 20
+enemySpeed = 5
+projectileSpeed = 25
 
 # projectiles
 projectile = turtle.Turtle()
@@ -50,10 +53,9 @@ projectile.shape("triangle")
 projectile.penup()
 projectile.speed()
 projectile.setheading(90)
-projectile.shapesize(.9, .90)
+projectile.shapesize(.3, .3)
 projectile.hideturtle()
 
-projectileSpeed = 25
 canFire = True
 firing = False
 
@@ -67,18 +69,21 @@ enemy.setheading(270)
 enemy.setposition(-200, 250)
 enemy.hideturtle()
 
-enemySpeed = 5
-
 
 def fire():
     # set porjectitle to nose of player
-    if canFire():
+    global canFire
+    global firing
+    if canFire:
         firing = True
         # start location , @player
         positionx = player.xcor()
-        positiony = player.ycor()
+        positiony = player.ycor() + 5
         projectile.setposition(positionx, positiony)
-        positiony.showtutle()
+        projectile.showturtle()
+
+    else:
+        print("Gun Disabled")
 
 
 # @start position is 0, if move L(-) or R(+) selected ,  player speed acts on position
@@ -119,10 +124,16 @@ while isRunning:
         enemy.sety(y)
         enemySpeed *= -1
 
+    # lose check
+    if enemy.ycor() < -250:
+        print("Game Over")
+        isRunning = False
+
     # keyboard Input
     gameWindow.listen()
-    gameWindow.onkeypress(moveRight(), "d")
-    gameWindow.onkeypress(moveLeft(), "a")
+    gameWindow.onkey(moveRight(), "d")
+    gameWindow.onkey(moveLeft(), "a")
+    gameWindow.onkey(fire(), "Space")
 
     # isRunning = False
 
