@@ -155,6 +155,9 @@ while isRunning:
     else:
         pass
     # projectile movement
+    projectile_y = projectile.ycor()
+    projectile_y += projectile_Speed
+    projectile.sety(projectile_y)
     # isRunning = False
 
 game_window.mainloop()
