@@ -154,10 +154,17 @@ while isRunning:
         fire()
     else:
         pass
+
     # projectile movement
     projectile_y = projectile.ycor()
     projectile_y += projectile_Speed
     projectile.sety(projectile_y)
+
+    # Projectile movement TODO
+    # fire at most one on screen ,
+    # delete object when out of bounds ,
+    # allow fire again
+
     # isRunning = False
 
 game_window.mainloop()
