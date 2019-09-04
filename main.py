@@ -3,6 +3,7 @@
 # jack.millar400@gmail.com
 
 import os
+import keyboard
 import turtle
 import winsound
 import time
@@ -74,10 +75,10 @@ enemy.hideturtle()
 
 
 def killCheck():
-    global GameScore 
+    global GameScore
     kill_count = 0
     GameScore = 0
-    
+
 
 def fire():
     # set porjectitle to nose of player
@@ -87,7 +88,7 @@ def fire():
         firing = True
         # start location , @player
         positionx = player.xcor()
-        positiony = player.ycor() + 5
+        positiony = player.ycor() + 15
         projectile.setposition(positionx, positiony)
         projectile.showturtle()
 
@@ -101,7 +102,7 @@ def fire():
 def move_right():
     position = player.xcor()
     position += player_speed
-    if position < 250:
+    if position > 250:
         position = 250
     player.setx(position)
 
@@ -141,10 +142,19 @@ while isRunning:
     killCheck()
     # keyboard Input
     game_window.listen()
-    game_window.onkeypress(move_right(), "d")
-    game_window.onkeypress(move_left(), "a")
-    game_window.onkeypress(fire(), "Space")
-
+    if keyboard.is_pressed("d"):
+        move_right()
+    else:
+        pass
+    if keyboard.is_pressed("a"):
+        move_left()
+    else:
+        pass
+    if keyboard.is_pressed("space"):
+        fire()
+    else:
+        pass
+    # projectile movement
     # isRunning = False
 
 game_window.mainloop()
