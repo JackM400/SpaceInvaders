@@ -1,13 +1,9 @@
-# Space Invaders
+# Space Invaders [Basic]
 # JackM400
 # jack.millar400@gmail.com
 
-import os
 import keyboard
 import turtle
-import winsound
-import time
-from turtle import *
 
 isRunning = True
 
@@ -142,17 +138,18 @@ while isRunning:
         isRunning = False
 
     killCheck()
+
     # keyboard Input
     game_window.listen()
-    if keyboard.is_pressed("d"):
+    if keyboard.is_pressed("d"):  # move player left
         move_right()
     else:
         pass
-    if keyboard.is_pressed("a"):
+    if keyboard.is_pressed("a"):  # move player right
         move_left()
     else:
         pass
-    if keyboard.is_pressed("space"):
+    if keyboard.is_pressed("space"):  # fire player weapon
         fire()
     else:
         pass
@@ -162,13 +159,15 @@ while isRunning:
     projectile_y += projectile_Speed
     projectile.sety(projectile_y)
 
-    # Projectile movement TODO
-    # fire at most one on screen ,
-    # delete object when out of bounds ,
-    # allow fire again
+    # if projectile in flight , cannot fire again until complete
     if projectile.ycor() > 295:
         firing = False
         projectile.hideturtle()
+
+    if enemy.xcor() == projectile.xcor() and enemy.ycor() == projectile.ycor():
+        enemy.hideturtle()
+        GameScore += 10
+        enemy_speed += 5
 
     # isRunning = False
 
