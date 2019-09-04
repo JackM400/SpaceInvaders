@@ -42,6 +42,8 @@ player.shape("triangle")
 player.setheading(90)
 player.color("green")
 
+playerLives = 3
+
 # -Movement
 player_speed = 20
 enemy_speed = 5
@@ -71,8 +73,16 @@ enemy.setposition(-200, 250)
 enemy.hideturtle()
 
 
-def enemy_startpos():
+def enemy_start_pos():
+    enemy.hideturtle()
     enemy.setposition(-200, 250)
+    enemy.showturtle()
+
+
+def player_start_pos():
+    player.hideturtle()
+    player.setposition(-20, -230)
+    player.showturtle()
 
 
 def fire():
@@ -145,11 +155,6 @@ while isRunning:
         enemy.sety(y)
         enemy_speed *= -1
 
-    # lose check
-    if enemy.ycor() < -250:
-        print("Game Over")
-        isRunning = False
-
     # keyboard Input
     game_window.listen()
     if keyboard.is_pressed("d"):  # move player left
@@ -182,10 +187,28 @@ while isRunning:
     if isHit(projectile, enemy):
         projectile.hideturtle()
         canFire = True
-        enemy_startpos()  # temp check to make sure collision works
+        enemy_start_pos()  # temp check to make sure collision works
         GameScore += 10
         enemy_speed += 5
 
+    # if player enemy collision
+    if isHit(player, enemy):
+        playerLives -= 1
+        player_start_pos()
+        enemy_start_pos()  # temp check to make sure collision works
+        GameScore += 10
+        enemy_speed += 5
+        canFire = True
+
+    # lose checks
+    # enemy "lands" [reaches bottom of screen]
+    if enemy.ycor() < -250:
+        print("Game Over")
+        isRunning = False
+    # if player no of lives runs out
+    if playerLives == 0:
+        print("Game Over")
+        isRunning = False
     # isRunning = False
 
 game_window.mainloop()
