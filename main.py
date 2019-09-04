@@ -85,12 +85,14 @@ def fire():
     global canFire
     global firing
     if canFire:
-        firing = True
-        # start location , @player
-        positionx = player.xcor()
-        positiony = player.ycor() + 15
-        projectile.setposition(positionx, positiony)
-        projectile.showturtle()
+        if not firing:
+            firing = True
+            # start location , @player
+            positionx = player.xcor()
+            positiony = player.ycor() + 15
+            projectile.setposition(positionx, positiony)
+            projectile.showturtle()
+
 
     else:
         print("Gun Disabled")
@@ -164,6 +166,9 @@ while isRunning:
     # fire at most one on screen ,
     # delete object when out of bounds ,
     # allow fire again
+    if projectile.ycor() > 295:
+        firing = False
+        projectile.hideturtle()
 
     # isRunning = False
 
