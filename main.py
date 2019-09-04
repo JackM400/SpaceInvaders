@@ -1,6 +1,7 @@
 # Space Invaders [Basic]
 # JackM400
 # jack.millar400@gmail.com
+import math
 
 import keyboard
 import turtle
@@ -70,6 +71,10 @@ enemy.setposition(-200, 250)
 enemy.hideturtle()
 
 
+def enemy_startpos():
+    enemy.setposition(-200, 250)
+
+
 def fire():
     # set projectile to nose of player
     global canFire
@@ -93,6 +98,9 @@ def isHit(projectile, enemy):
     # distance equation between points P ,Q
     # d(P, Q) = sqrt(p(x2 − x1)2 + (y2 − y1)2)
     rel_distance = 100
+    rel_distance = math.sqrt(math.pow(projectile.xcor() - enemy.xcor(), 2) +
+                             math.pow(projectile.ycor() - enemy.ycor(), 2))
+
     if rel_distance < 25:
         return True
     else:
@@ -171,8 +179,10 @@ while isRunning:
     # (point objects as standard , low chance of direct hit ,
     # hit counts if projected shapes of projectile  + enemy overlap)
 
-    if isHit():
-        enemy.hideturtle()
+    if isHit(projectile, enemy):
+        projectile.hideturtle()
+        canFire = True
+        enemy_startpos()  # temp check to make sure collision works
         GameScore += 10
         enemy_speed += 5
 
