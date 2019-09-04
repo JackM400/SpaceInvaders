@@ -14,7 +14,7 @@ game_window.title("Space Invaders - JackM400")
 game_window.bgcolor("black")
 
 # game attributes 
-GameScore = 0
+GameScore: int = 0
 
 # screen attributes
 # -border
@@ -53,7 +53,7 @@ projectile.shape("triangle")
 projectile.penup()
 projectile.speed()
 projectile.setheading(90)
-projectile.shapesize(.3, .3)
+projectile.shapesize(.45, .45)
 projectile.hideturtle()
 
 canFire = True
@@ -70,20 +70,14 @@ enemy.setposition(-200, 250)
 enemy.hideturtle()
 
 
-def killCheck():
-    global GameScore
-    kill_count = 0
-    GameScore = 0
-
-
 def fire():
-    # set porjectitle to nose of player
+    # set projectile to nose of player
     global canFire
     global firing
     if canFire:
         if not firing:
             firing = True
-            # start location , @player
+            # start location of projectiles , @player
             positionx = player.xcor()
             positiony = player.ycor() + 15
             projectile.setposition(positionx, positiony)
@@ -92,6 +86,17 @@ def fire():
 
     else:
         print("Gun Disabled")
+
+
+# check if projectile and enemy area overlap -> hit , enemy kill
+def isHit(projectile, enemy):
+    # distance equation between points P ,Q
+    # d(P, Q) = sqrt(p(x2 − x1)2 + (y2 − y1)2)
+    rel_distance = 100
+    if rel_distance < 25:
+        return True
+    else:
+        return False
 
 
 # @start position is 0, if move L(-) or R(+) selected ,  player speed acts on position
@@ -137,8 +142,6 @@ while isRunning:
         print("Game Over")
         isRunning = False
 
-    killCheck()
-
     # keyboard Input
     game_window.listen()
     if keyboard.is_pressed("d"):  # move player left
@@ -164,7 +167,11 @@ while isRunning:
         firing = False
         projectile.hideturtle()
 
-    if enemy.xcor() == projectile.xcor() and enemy.ycor() == projectile.ycor():
+    # if projectile hits enemy
+    # (point objects as standard , low chance of direct hit ,
+    # hit counts if projected shapes of projectile  + enemy overlap)
+
+    if isHit():
         enemy.hideturtle()
         GameScore += 10
         enemy_speed += 5
