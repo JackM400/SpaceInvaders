@@ -72,10 +72,22 @@ enemy.setheading(270)
 enemy.setposition(-200, 250)
 enemy.hideturtle()
 
-#TODO mulitple enemys
+# TODO mulitple enemys
 # select how many by difficulty ,
 # speed by difficulty
 enemy_count = 1
+
+enemies = []
+for i in range(enemy_count):
+    enemy = turtle.Turtle()
+    enemy.color("red")
+    enemy.shape("triangle")
+    enemy.penup()
+    enemy.speed()
+    enemy.setheading(270)
+    enemy.setposition(-200, 250)
+    enemy.hideturtle()
+
 
 
 def enemy_start_pos():
