@@ -2,7 +2,7 @@
 # JackM400
 # jack.millar400@gmail.com
 import math
-
+import random
 import keyboard
 import turtle
 
@@ -70,13 +70,15 @@ for i in range(enemy_count):
     enemies.append(turtle.Turtle())
 
 for enemy in enemies:
-    enemy = turtle.Turtle()
+    # enemy starts at random location
+    x = random.randint(-200, 200)
     enemy.color("red")
     enemy.shape("triangle")
     enemy.penup()
     enemy.speed()
     enemy.setheading(270)
-    enemy.setposition(-200, 250)
+    enemy.setposition(x, 250)
+
 
 def enemy_start_pos():
     enemy.hideturtle()
@@ -145,22 +147,23 @@ def move_left():
 
 
 while isRunning:
-    # boot
-    # populate enemies
-    # set enemy speed
-    # move enemy
-    enemy.showturtle()
-    x = enemy.xcor()
-    x += enemy_speed
-    enemy.setx(x)
+    for enemy in enemies:
+        # boot
+        # populate enemies
+        # set enemy speed
+        # move enemy
+        enemy.showturtle()
+        x = enemy.xcor()
+        x += enemy_speed
+        enemy.setx(x)
 
-    # enemy progression , R -> D -> L -> D -> R ....
-    # Left ,Right + Down movement
-    if enemy.xcor() > 270 or enemy.xcor() < -270:
-        y = enemy.ycor()
-        y -= 20
-        enemy.sety(y)
-        enemy_speed *= -1
+        # enemy progression , R -> D -> L -> D -> R ....
+        # Left ,Right + Down movement
+        if enemy.xcor() > 270 or enemy.xcor() < -270:
+            y = enemy.ycor()
+            y -= 20
+            enemy.sety(y)
+            enemy_speed *= -1
 
     # keyboard Input
     game_window.listen()
