@@ -66,18 +66,22 @@ firing = False
 enemy_count = 5
 enemies = []
 
+# add enemy entities to list
 for i in range(enemy_count):
     enemies.append(turtle.Turtle())
-
+# add attributes to each enemy in enemies
 for enemy in enemies:
+    # some % are hard enemies , smaller and faster etc
+
     # enemy starts at random location
     x = random.randint(-200, 200)
+    y = random.randint(175, 250)
     enemy.color("red")
     enemy.shape("triangle")
     enemy.penup()
     enemy.speed()
     enemy.setheading(270)
-    enemy.setposition(x, 250)
+    enemy.setposition(x, y)
 
 
 def enemy_start_pos():
@@ -106,8 +110,6 @@ def fire():
             positiony = player.ycor() + 15
             projectile.setposition(positionx, positiony)
             projectile.showturtle()
-
-
     else:
         print("Gun Disabled")
 
@@ -147,24 +149,6 @@ def move_left():
 
 
 while isRunning:
-    for enemy in enemies:
-        # boot
-        # populate enemies
-        # set enemy speed
-        # move enemy
-        enemy.showturtle()
-        x = enemy.xcor()
-        x += enemy_speed
-        enemy.setx(x)
-
-        # enemy progression , R -> D -> L -> D -> R ....
-        # Left ,Right + Down movement
-        if enemy.xcor() > 270 or enemy.xcor() < -270:
-            y = enemy.ycor()
-            y -= 20
-            enemy.sety(y)
-            enemy_speed *= -1
-
     # keyboard Input
     game_window.listen()
     if keyboard.is_pressed("d"):  # move player left
@@ -190,23 +174,41 @@ while isRunning:
         firing = False
         projectile.hideturtle()
 
-    # if projectile hits enemy
-    # (point objects as standard , low chance of direct hit ,
-    # hit counts if projected shapes of projectile  + enemy overlap)
+    for enemy in enemies:
+        # boot
+        # populate enemies
+        # set enemy speed
+        # move enemy
+        enemy.showturtle()
+        x = enemy.xcor()
+        x += enemy_speed
+        enemy.setx(x)
 
-    if isHit(projectile, enemy):
-        projectile.hideturtle()
-        canFire = True
-        enemy_start_pos()  # temp check to make sure collision works
-        GameScore += 10
+        # enemy progression , R -> D -> L -> D -> R ....
+        # Left ,Right + Down movement
+        if enemy.xcor() > 270 or enemy.xcor() < -270:
+            y = enemy.ycor()
+            y -= 20
+            enemy.sety(y)
+            enemy_speed *= -1
 
-    # if player enemy collision
-    if isHit(player, enemy):
-        playerLives -= 1
-        player_start_pos()
-        enemy_start_pos()  # temp check to make sure collision works
-        GameScore += 10
-        canFire = True
+        # if projectile hits enemy
+        # (point objects as standard , low chance of direct hit ,
+        # hit counts if projected shapes of projectile  + enemy overlap)
+
+        if isHit(projectile, enemy):
+            projectile.hideturtle()
+            canFire = True
+            enemy_start_pos()  # temp check to make sure collision works
+            GameScore += 10
+
+        # if player enemy collision
+        if isHit(player, enemy):
+            playerLives -= 1
+            player_start_pos()
+            enemy_start_pos()  # temp check to make sure collision works
+            GameScore += 10
+            canFire = True
 
     # lose checks
     # enemy "lands" [reaches bottom of screen]
