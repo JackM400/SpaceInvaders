@@ -42,7 +42,7 @@ player.shape("triangle")
 player.setheading(90)
 player.color("green")
 
-playerLives = 3
+playerLives = 1
 
 # -Movement
 player_speed = 20
@@ -72,10 +72,17 @@ enemy.setheading(270)
 enemy.setposition(-200, 250)
 enemy.hideturtle()
 
+#TODO mulitple enemys
+# select how many by difficulty ,
+# speed by difficulty
+enemy_count = 1
+
 
 def enemy_start_pos():
     enemy.hideturtle()
     enemy.setposition(-200, 250)
+    global enemy_speed
+    enemy_speed += 5
     enemy.showturtle()
 
 
@@ -189,7 +196,6 @@ while isRunning:
         canFire = True
         enemy_start_pos()  # temp check to make sure collision works
         GameScore += 10
-        enemy_speed += 5
 
     # if player enemy collision
     if isHit(player, enemy):
@@ -197,7 +203,6 @@ while isRunning:
         player_start_pos()
         enemy_start_pos()  # temp check to make sure collision works
         GameScore += 10
-        enemy_speed += 5
         canFire = True
 
     # lose checks
