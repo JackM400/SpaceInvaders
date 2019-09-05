@@ -211,10 +211,10 @@ while isRunning:
             canFire = True
 
     # lose checks
-    # enemy "lands" [reaches bottom of screen]
-    if enemy.ycor() < -250:
-        print("Game Over")
-        isRunning = False
+        # enemy "lands" [reaches bottom of screen]
+        if enemy.ycor() < -250:
+            print("Game Over")
+            isRunning = False
     # if player no of lives runs out
     if playerLives == 0:
         print("Game Over")
