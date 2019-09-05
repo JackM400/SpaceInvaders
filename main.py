@@ -62,22 +62,10 @@ projectile.hideturtle()
 canFire = True
 firing = False
 
-# Enemy
-enemy = turtle.Turtle()
-enemy.color("red")
-enemy.shape("triangle")
-enemy.penup()
-enemy.speed()
-enemy.setheading(270)
-enemy.setposition(-200, 250)
-enemy.hideturtle()
-
-# TODO mulitple enemys
-# select how many by difficulty ,
-# speed by difficulty
+# Enemies
 enemy_count = 5
-
 enemies = []
+
 for i in range(enemy_count):
     enemies.append(turtle.Turtle())
 
@@ -89,9 +77,6 @@ for enemy in enemies:
     enemy.speed()
     enemy.setheading(270)
     enemy.setposition(-200, 250)
-
-
-
 
 def enemy_start_pos():
     enemy.hideturtle()
