@@ -1,4 +1,5 @@
 # Space Invaders [Basic]
+# Space Invaders - 1978 original created by Tomohiro Nishikado
 # JackM400
 # jack.millar400@gmail.com
 import math
