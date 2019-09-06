@@ -44,6 +44,7 @@ player.setheading(90)
 player.color("green")
 
 playerLives = 3
+game_limit = 275
 
 # -Movement
 player_speed = 20
@@ -66,23 +67,29 @@ firing = False
 # Enemies
 enemy_count = 5
 enemies = []
+enemy_coordinates = [enemy_count][enemy_count]
 
 # add enemy entities to list
 for i in range(enemy_count):
     enemies.append(turtle.Turtle())
 # add attributes to each enemy in enemies
+enemy_index = 0
 for enemy in enemies:
     # some % are hard enemies , smaller and faster etc
 
     # enemy starts at random location
     x = random.randint(-200, 200)
     y = random.randint(175, 250)
+    enemy_coordinates[enemy_index][enemy_index] = x, y
     enemy.color("red")
     enemy.shape("triangle")
     enemy.penup()
     enemy.speed()
     enemy.setheading(270)
     enemy.setposition(x, y)
+
+for e in enemy_coordinates:
+    print(enemy_coordinates[enemy_index][enemy_index])
 
 
 def enemy_start_pos():
@@ -187,7 +194,7 @@ while isRunning:
 
         # enemy progression , R -> D -> L -> D -> R ....
         # Left ,Right + Down movement
-        if enemy.xcor() > 270 or enemy.xcor() < -270:
+        if enemy.xcor() > game_limit or enemy.xcor() < (game_limit * -1):  # if enemy hit left side or right side
             for entity in enemies:
                 y = entity.ycor()
                 y -= 20
