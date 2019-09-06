@@ -43,7 +43,7 @@ player.shape("triangle")
 player.setheading(90)
 player.color("green")
 
-playerLives = 1
+playerLives = 3
 
 # -Movement
 player_speed = 20
@@ -188,9 +188,10 @@ while isRunning:
         # enemy progression , R -> D -> L -> D -> R ....
         # Left ,Right + Down movement
         if enemy.xcor() > 270 or enemy.xcor() < -270:
-            y = enemy.ycor()
-            y -= 20
-            enemy.sety(y)
+            for entity in enemies:
+                y = entity.ycor()
+                y -= 20
+                entity.sety(y)
             enemy_speed *= -1
 
         # if projectile hits enemy
@@ -206,12 +207,13 @@ while isRunning:
         # if player enemy collision
         if isHit(player, enemy):
             playerLives -= 1
+            print("Player Lives :" + playerLives)
             player_start_pos()
             enemy_start_pos()  # temp check to make sure collision works
             GameScore += 10
             canFire = True
 
-    # lose checks
+        # lose checks
         # enemy "lands" [reaches bottom of screen]
         if enemy.ycor() < -250:
             print("Game Over")
