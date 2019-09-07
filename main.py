@@ -15,8 +15,18 @@ game_window.title("Space Invaders - JackM400")
 # game_window.setup(width=600, height=600)
 game_window.bgcolor("black")
 
-# game attributes 
+# game attributes
+# -score
 GameScore: int = 0
+score_builder = turtle.Turtle()
+score_builder.hideturtle()
+score_builder.speed()
+score_builder.color("white")
+score_builder.penup()
+score_builder.setposition(-290, 275)
+printed_score = "Game Score : " + str(GameScore)
+score_builder.write(printed_score, False, align="left", font=("Arial", 14, "normal"))
+score_builder.hideturtle()
 
 # screen attributes
 # -border
@@ -67,29 +77,21 @@ firing = False
 # Enemies
 enemy_count = 5
 enemies = []
-enemy_coordinates = [enemy_count][enemy_count]
 
 # add enemy entities to list
 for i in range(enemy_count):
     enemies.append(turtle.Turtle())
 # add attributes to each enemy in enemies
-enemy_index = 0
 for enemy in enemies:
-    # some % are hard enemies , smaller and faster etc
-
     # enemy starts at random location
     x = random.randint(-200, 200)
     y = random.randint(175, 250)
-    enemy_coordinates[enemy_index][enemy_index] = x, y
     enemy.color("red")
     enemy.shape("triangle")
     enemy.penup()
     enemy.speed()
     enemy.setheading(270)
     enemy.setposition(x, y)
-
-for e in enemy_coordinates:
-    print(enemy_coordinates[enemy_index][enemy_index])
 
 
 def enemy_start_pos():
