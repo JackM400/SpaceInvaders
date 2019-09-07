@@ -18,15 +18,20 @@ game_window.bgcolor("black")
 # game attributes
 # -score
 GameScore: int = 0
-score_builder = turtle.Turtle()
-score_builder.hideturtle()
-score_builder.speed()
-score_builder.color("white")
-score_builder.penup()
-score_builder.setposition(-290, 275)
-printed_score = "Game Score : " + str(GameScore)
-score_builder.write(printed_score, False, align="left", font=("Arial", 14, "normal"))
-score_builder.hideturtle()
+
+
+def print_score():
+    score_builder = turtle.Turtle()
+    score_builder.hideturtle()
+    score_builder.speed()
+    score_builder.color("white")
+    score_builder.penup()
+    score_builder.setposition(-290, 275)
+    printed_score = "Game Score : " + str(GameScore)
+    score_builder.clear()
+    score_builder.write(printed_score, False, align="left", font=("Arial", 14, "normal"))
+    score_builder.hideturtle()
+
 
 # screen attributes
 # -border
@@ -159,6 +164,7 @@ def move_left():
 
 
 while isRunning:
+    print_score()
     # keyboard Input
     game_window.listen()
     if keyboard.is_pressed("d"):  # move player left
