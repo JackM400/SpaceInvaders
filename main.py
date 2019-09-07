@@ -18,20 +18,16 @@ game_window.bgcolor("black")
 # game attributes
 # -score
 GameScore: int = 0
-
-
-def print_score():
-    score_builder = turtle.Turtle()
-    score_builder.hideturtle()
-    score_builder.speed()
-    score_builder.color("white")
-    score_builder.penup()
-    score_builder.setposition(-290, 275)
-    printed_score = "Game Score : " + str(GameScore)
-    score_builder.clear()
-    score_builder.write(printed_score, False, align="left", font=("Arial", 14, "normal"))
-    score_builder.hideturtle()
-
+score_builder = turtle.Turtle()
+score_builder.hideturtle()
+score_builder.speed()
+score_builder.color("white")
+score_builder.penup()
+score_builder.setposition(-290, 275)
+printed_score = "Game Score : " + str(GameScore)
+score_builder.clear()
+score_builder.write(printed_score, False, align="left", font=("Arial", 14, "normal"))
+score_builder.hideturtle()
 
 # screen attributes
 # -border
@@ -164,7 +160,6 @@ def move_left():
 
 
 while isRunning:
-    print_score()
     # keyboard Input
     game_window.listen()
     if keyboard.is_pressed("d"):  # move player left
@@ -218,6 +213,9 @@ while isRunning:
             canFire = True
             enemy_start_pos()  # temp check to make sure collision works
             GameScore += 10
+            printed_score = "Game Score : " + str(GameScore)
+            score_builder.clear()
+            score_builder.write(printed_score, False, align="left", font=("Arial", 14, "normal"))
 
         # if player enemy collision
         if isHit(player, enemy):
