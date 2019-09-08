@@ -8,6 +8,8 @@ import keyboard
 import turtle
 
 isRunning = True
+playerLives = 3
+game_limit = 275
 
 # game screen
 game_window = turtle.Screen()
@@ -17,12 +19,13 @@ game_window.bgcolor("black")
 
 # game visual elements
 game_window.bgpic("game_background.png")
-game_window.register_shape("mainplayer.gif")
+game_window.register_shape("player.gif")
 game_window.register_shape("enemyinvader.gif")
 
 # game attributes
 # -score
 GameScore: int = 0
+
 score_builder = turtle.Turtle()
 score_builder.hideturtle()
 score_builder.speed()
@@ -33,6 +36,32 @@ printed_score = "Game Score : " + str(GameScore)
 score_builder.clear()
 score_builder.write(printed_score, False, align="left", font=("Arial", 14, "normal"))
 score_builder.hideturtle()
+
+
+def life_counter():
+    lives_builder = turtle.Turtle()
+    lives_builder.hideturtle()
+    lives_builder.speed()
+    lives_builder.color("white")
+    lives_builder.penup()
+    lives_builder.setposition(165, 275)
+    printed_player_lives = "Player Lives : " + str(playerLives)
+    lives_builder.clear()
+    lives_builder.write(printed_player_lives, False, align="left", font=("Arial", 14, "normal"))
+    lives_builder.hideturtle()
+
+
+def end_screen():
+    end_game_builder = turtle.Turtle()
+    end_game_builder.hideturtle()
+    end_game_builder.speed()
+    end_game_builder.color("white")
+    end_game_builder.penup()
+    printed_end = "Game Over\nScore : " + str(GameScore)
+    end_game_builder.write(printed_end, False, align="left", font=("Arial", 14, "normal"))
+    end_game_builder.clear()
+    end_game_builder.hideturtle()
+
 
 # screen attributes
 # -border
@@ -55,12 +84,9 @@ player = turtle.Turtle()
 player.penup()
 player.speed(0)
 player.setposition(-20, -230)
-player.shape("mainplayer.gif")
+player.shape("player.gif")
 player.setheading(90)
 player.color("green")
-
-playerLives = 3
-game_limit = 275
 
 # -Movement
 player_speed = 20
@@ -164,6 +190,7 @@ def move_left():
     player.setx(position)
 
 
+life_counter()
 while isRunning:
     # keyboard Input
     game_window.listen()
@@ -225,7 +252,7 @@ while isRunning:
         # if player enemy collision
         if isHit(player, enemy):
             playerLives -= 1
-            print("Player Lives :" + playerLives)
+            print("Player Lives :" + str(playerLives))
             player_start_pos()
             enemy_start_pos()  # temp check to make sure collision works
             GameScore += 10
@@ -235,10 +262,12 @@ while isRunning:
         # enemy "lands" [reaches bottom of screen]
         if enemy.ycor() < -250:
             print("Game Over")
+            end_screen()
             isRunning = False
     # if player no of lives runs out
     if playerLives == 0:
         print("Game Over")
+        end_screen()
         isRunning = False
     # isRunning = False
 
