@@ -13,7 +13,7 @@ isRunning = True
 game_window = turtle.Screen()
 game_window.title("Space Invaders - JackM400")
 # game_window.setup(width=600, height=600)
-game_window.bgcolor("black")
+game_window.bgpic("game_background.png")
 
 # game attributes
 # -score
