@@ -13,7 +13,12 @@ isRunning = True
 game_window = turtle.Screen()
 game_window.title("Space Invaders - JackM400")
 # game_window.setup(width=600, height=600)
+game_window.bgcolor("black")
+
+# game visual elements
 game_window.bgpic("game_background.png")
+game_window.register_shape("mainplayer.gif")
+game_window.register_shape("enemyinvader.gif")
 
 # game attributes
 # -score
@@ -50,7 +55,7 @@ player = turtle.Turtle()
 player.penup()
 player.speed(0)
 player.setposition(-20, -230)
-player.shape("triangle")
+player.shape("mainplayer.gif")
 player.setheading(90)
 player.color("green")
 
@@ -88,7 +93,7 @@ for enemy in enemies:
     x = random.randint(-200, 200)
     y = random.randint(175, 250)
     enemy.color("red")
-    enemy.shape("triangle")
+    enemy.shape("enemyinvader.gif")
     enemy.penup()
     enemy.speed()
     enemy.setheading(270)
