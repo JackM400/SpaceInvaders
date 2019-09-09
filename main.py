@@ -13,14 +13,15 @@ game_limit = 275
 
 # game screen
 game_window = turtle.Screen()
+game_window.screensize(300, 300)
 game_window.title("Space Invaders - JackM400")
 # game_window.setup(width=600, height=600)
 game_window.bgcolor("black")
 
 # game visual elements
 game_window.bgpic("game_background.png")
-game_window.register_shape("player.gif")
-game_window.register_shape("enemyinvader.gif")
+game_window.register_shape("tank_player.gif")
+game_window.register_shape("enemy_invader.gif")
 
 # game attributes
 # -score
@@ -84,7 +85,7 @@ player = turtle.Turtle()
 player.penup()
 player.speed(0)
 player.setposition(-20, -230)
-player.shape("player.gif")
+player.shape("tank_player.gif")
 player.setheading(90)
 player.color("green")
 
@@ -119,7 +120,7 @@ for enemy in enemies:
     x = random.randint(-200, 200)
     y = random.randint(175, 250)
     enemy.color("red")
-    enemy.shape("enemyinvader.gif")
+    enemy.shape("enemy_invader.gif")
     enemy.penup()
     enemy.speed()
     enemy.setheading(270)
@@ -163,7 +164,6 @@ def isHit(projectile, enemy):
     rel_distance = 100
     rel_distance = math.sqrt(math.pow(projectile.xcor() - enemy.xcor(), 2) +
                              math.pow(projectile.ycor() - enemy.ycor(), 2))
-
     if rel_distance < 25:
         return True
     else:
@@ -171,7 +171,6 @@ def isHit(projectile, enemy):
 
 
 # @start position is 0, if move L(-) or R(+) selected ,  player speed acts on position
-
 # -Right
 def move_right():
     position = player.xcor()
@@ -272,3 +271,4 @@ while isRunning:
     # isRunning = False
 
 game_window.mainloop()
+
